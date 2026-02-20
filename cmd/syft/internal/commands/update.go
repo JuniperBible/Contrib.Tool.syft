@@ -97,7 +97,7 @@ func fetchLatestApplicationVersion(id clio.Identification) (*hashiVersion.Versio
 	req.Header.Add("User-Agent", fmt.Sprintf("%v %v", id.Name, id.Version))
 
 	client := http.Client{}
-	resp, err := client.Do(req)
+	resp, err := client.Do(req) // #nosec G704 -- URL is constructed from a known constant
 	if err != nil {
 		return nil, fmt.Errorf("failed to fetch latest version: %w", err)
 	}

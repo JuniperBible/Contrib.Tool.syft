@@ -238,7 +238,7 @@ func (c *NVDAPIClient) fetchPage(ctx context.Context, startIndex int, start, end
 		req.Header.Set("User-Agent", "syft-cpe-dictionary-generator")
 
 		// execute request
-		httpResp, err := c.httpClient.Do(req)
+		httpResp, err := c.httpClient.Do(req) // #nosec G704 -- URL is constructed from a known NVD API base URL
 		if err != nil {
 			return NVDProductsResponse{}, fmt.Errorf("failed to execute request: %w", err)
 		}

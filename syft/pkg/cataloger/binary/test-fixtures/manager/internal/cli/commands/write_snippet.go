@@ -115,7 +115,7 @@ func runWriteSnippet(binaryPath string, offset, length int, snippetPath string) 
 		return fmt.Errorf("unable to create destination directory: %w", err)
 	}
 
-	if err := os.WriteFile(snippetPath, finalBuf, 0600); err != nil {
+	if err := os.WriteFile(snippetPath, finalBuf, 0600); err != nil { // #nosec G703 -- snippetPath is derived from validated config, not arbitrary user input
 		return fmt.Errorf("unable to write snippet: %w", err)
 	}
 

@@ -219,7 +219,7 @@ func attestCommand(sbomFilepath string, opts *attestOptions, userInput string) (
 		args = append(args, "--key", opts.Attest.Key.String())
 	}
 
-	execCmd := exec.Command(cosignBinName, args...)
+	execCmd := exec.Command(cosignBinName, args...) // #nosec G702 -- cosignBinName is a trusted constant, not user input
 	execCmd.Env = os.Environ()
 	if opts.Attest.Key != "" {
 		execCmd.Env = append(execCmd.Env, fmt.Sprintf("COSIGN_PASSWORD=%s", opts.Attest.Password))

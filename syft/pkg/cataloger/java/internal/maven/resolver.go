@@ -424,7 +424,7 @@ func (r *Resolver) findPomInRemoteRepository(ctx context.Context, repo string, g
 			Timeout: r.remoteRequestTimeout,
 		}
 
-		resp, err := client.Do(req)
+		resp, err := client.Do(req) // #nosec G704 -- URL is constructed from configured Maven repository URLs
 		if err != nil {
 			return nil, fmt.Errorf("unable to get pom from Maven repository %v: %w", requestURL, err)
 		}

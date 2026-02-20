@@ -190,7 +190,7 @@ func (c *snapcraftClient) GetSnapDownloadURL(id snapIdentity) (string, error) {
 	}
 	req.Header.Set("Snap-Device-Series", defaultSeries)
 
-	resp, err := c.HTTPClient.Do(req)
+	resp, err := c.HTTPClient.Do(req) // #nosec G704 -- URL is constructed from configured Snapcraft API base URL
 	if err != nil {
 		return "", fmt.Errorf("failed to send HTTP request: %w", err)
 	}
@@ -249,7 +249,7 @@ func (c *snapcraftClient) CheckSnapExists(snapName string) (bool, string, error)
 
 	req.Header.Set("Snap-Device-Series", defaultSeries)
 
-	resp, err := c.HTTPClient.Do(req)
+	resp, err := c.HTTPClient.Do(req) // #nosec G704 -- URL is constructed from configured Snapcraft find API base URL
 	if err != nil {
 		return false, "", fmt.Errorf("failed to send find request: %w", err)
 	}

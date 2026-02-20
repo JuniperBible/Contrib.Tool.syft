@@ -32,7 +32,7 @@ func parseRpmDB(ctx context.Context, resolver file.Resolver, env *generic.Enviro
 		if err != nil {
 			log.Errorf("failed to close temp rpmdb file: %+v", err)
 		}
-		err = os.Remove(f.Name())
+		err = os.Remove(f.Name()) // #nosec G703 -- f is created by os.CreateTemp, not user-controlled
 		if err != nil {
 			log.Errorf("failed to remove temp rpmdb file: %+v", err)
 		}

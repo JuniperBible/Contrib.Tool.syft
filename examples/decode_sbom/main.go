@@ -44,7 +44,7 @@ func sbomReader() io.Reader {
 		reader = strings.NewReader(sbomContents)
 	} else {
 		var err error
-		reader, err = os.Open(os.Args[1])
+		reader, err = os.Open(os.Args[1]) // #nosec G703 -- this is an example CLI tool reading a user-specified file
 		if err != nil {
 			panic(err)
 		}

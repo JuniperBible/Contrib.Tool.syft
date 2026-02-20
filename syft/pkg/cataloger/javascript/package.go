@@ -247,7 +247,7 @@ func getLicenseFromNpmRegistry(baseURL, packageName, version string) (string, er
 		Timeout: time.Second * 10,
 	}
 
-	resp, err := httpClient.Do(npmRequest)
+	resp, err := httpClient.Do(npmRequest) // #nosec G704 -- URL is constructed from a known npm registry base URL
 	if err != nil {
 		return "", fmt.Errorf("unable to get package from npm registry: %w", err)
 	}

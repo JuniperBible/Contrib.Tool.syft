@@ -241,7 +241,7 @@ func createTempDB(content io.ReadCloser) (*os.File, error) {
 	_, err = io.Copy(tempFile, content)
 	if err != nil {
 		tempFile.Close()
-		os.Remove(tempFile.Name())
+		os.Remove(tempFile.Name()) // #nosec G703 -- tempFile is created by os.CreateTemp, not user-controlled
 		return nil, err
 	}
 

@@ -86,7 +86,7 @@ func getLicenseFromPypiRegistry(baseURL, packageName, version string) (string, e
 		Timeout: time.Second * 10,
 	}
 
-	resp, err := httpClient.Do(pypiRequest)
+	resp, err := httpClient.Do(pypiRequest) // #nosec G704 -- URL is constructed from a known PyPI registry base URL
 	if err != nil {
 		return "", fmt.Errorf("unable to get package from pypi registry: %w", err)
 	}
